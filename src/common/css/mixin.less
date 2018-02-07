@@ -1,0 +1,69 @@
+/*移动端(手机)1像素px边框*/
+.border-1px(@color) {
+  position: relative;
+  &:after {
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid @color;
+    content: ' ';
+  }
+}
+/*去掉1像素边框*/
+.border-none(){
+  &:after{
+    display: none;
+  }
+}
+
+
+/*移动端自适应不同的dpr*/
+.bg-dpr(@name) {
+  background-image: url("img/@{name}@2x.png"); //@{变量}
+  @media (min-device-pixel-ratio: 3), (-webkit-min-device-pixel-ratio:3) {
+    background-image:url("img/@{name}@3x.png");
+  }
+}
+
+
+
+/* 对背景图片的样式进行处理*/
+.bg-image(@a,
+@b) {
+  display: inline-block;
+  vertical-align: top; //怎么使得图片和文字在一条直线上？？？只要给这个图片写vertical-align:top;
+  width: @a;
+  height: @b;
+  background-size: @a @b;
+  background-repeat: no-repeat;
+}
+
+
+/* 商家的名称*/
+.seller-name(@height) {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: @height;
+}
+
+
+/* 优惠信息的icon：根据supports不同的type显示不同的图片*/
+.supports-icon(@n) {
+  &.decrease {
+    .bg-dpr('decrease_@{n}');
+  }
+  &.discount {
+    .bg-dpr('discount_@{n}');
+  }
+  &.special {
+    .bg-dpr('special_@{n}');
+  }
+  &.guarantee {
+    .bg-dpr('guarantee_@{n}');
+  }
+  &.invoice {
+    .bg-dpr('decrease_@{n}');
+  }
+}
