@@ -22,7 +22,8 @@ export default {
    //data如果是一个对象？？？
   data() {
     return {
-      seller: {}
+      seller: {},
+      test: '',
     }
   },
   components: {
